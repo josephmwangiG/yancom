@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Yencom | Company Profile</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script
+      defer
+      src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lexend:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 100px;
+      }
+
+      body,
+      section,
+      div,
+      p,
+      h2 {
+        padding: 0;
+        margin: 0;
+      }
+
+      body {
+        font-family: "Cabin", sans-serif;
+      }
+
+      .full-viewport-width {
+        width: 100vw;
+        left: 50%;
+        right: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;
+      }
+
+      .tick {
+        color: #4db972;
+        font-size: 24px;
+      }
+
+      /* Simple registry for hex values */
+      :root {
+        --main-green: #4db972;
+        --main-green-light: #d1fae0;
+        --dark-green: #0e2116;
+        --text-main: #2c2c2c;
+        --main-blue: #172952;
+      }
+    </style>
+  </head>
+
+  <body
+    x-data="{ 
+      activeSection: 'hero',
+      mobileMenuOpen: false,
+    }"
+    class="w-full text-lg text-gray-500 overflow-x-hidden"
+  >
+    <main class="relative bg-white overflow-x-hidden">
+      <!-- Desktop Sticky NavBar -->
+      <div
+        class="sticky bg-gradient-to-r from-[#0e2116] to-[#00491a] shadow-xl w-full z-50"
+      >
+        <nav class="mx-auto max-w-[1240px] py-4 px-8 rounded-xl text-white">
+          <div class="flex items-center justify-between">
+            <a
+              href="#hero"
+              @click="activeSection = 'hero'; mobileMenuOpen = false;"
+            >
+              <img
+                src="./yencom-logo-white.png"
+                alt="yencom logo white"
+                class="h-12"
+              />
+            </a>
+            <ul class="hidden lg:flex items-center gap-6 font-medium">
+              <li>
+                <a
+                  href="#about-us"
+                  @click="activeSection = 'about-us'"
+                  class="hover:underline"
+                  style="text-underline-offset: 4px"
+                  x-bind:class="activeSection === 'about-us' ? 'font-semibold underline' : ''"
+                  >About Us
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#our-services"
+                  @click="activeSection = 'our-services'"
+                  class="hover:underline"
+                  style="text-underline-offset: 4px"
+                  x-bind:class="activeSection === 'our-services' ? 'font-semibold underline' : ''"
+                  >Our Services
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#why-us"
+                  @click="activeSection = 'why-us'"
+                  class="hover:underline"
+                  style="text-underline-offset: 4px"
+                  x-bind:class="activeSection === 'why-us' ? 'font-semibold underline' : ''"
+                  >Why Us
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#our-partners"
+                  @click="activeSection = 'our-partners'"
+                  class="hover:underline"
+                  style="text-underline-offset: 4px"
+                  x-bind:class="activeSection === 'our-partners' ? 'font-semibold underline' : ''"
+                  >Our Partners
+                </a>
+              </li>
+            </ul>
+            <a
+              href="#contact-us"
+              @click="activeSection = 'contact-us'"
+              class="hidden lg:block rounded-full px-4 py-2 bg-[#4db972] text-base hover:bg-[hsl(141,44%,46%)] active:bg-[hsl(141,44%,42%)]"
+              >Contact Us
+            </a>
+            <!-- Hamburger menu button - visible only on smaller screens -->
+            <button
+              @click="mobileMenuOpen = !mobileMenuOpen"
+              class="lg:hidden text-white focus:outline-none"
+              aria-label="Toggle menu"
+            >
+              <svg
+                x-show="!mobileMenuOpen"
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+              <svg
+                x-show="mobileMenuOpen"
+                x-cloak
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+          </div>
+          <!-- Mobile menu - slides down when hamburger is clicked -->
+          <div
+            x-show="mobileMenuOpen"
+            x-transition:enter="transition-all duration-300 ease-out"
+            x-transition:enter-start="max-h-0 transform opacity-0 scale-y-0"
+            x-transition:enter-end="max-h-[999px] transform opacity-100 scale-y-100"
+            x-transition:leave="transition-all duration-300 ease-out"
+            x-transition:leave-start="max-h-[999px] transform opacity-100 scale-y-100"
+            x-transition:leave-end="max-h-0 transform opacity-0 scale-y-0"
+            x-cloak
+            class="sticky origin-top top-0 lg:hidden w-full py-4 z-50"
+          >
+            <div class="text-white rounded-b-lg">
+              <ul class="flex flex-col space-y-4">
+                <li>
+                  <a
+                    href="#about-us"
+                    @click="activeSection = 'about-us'; mobileMenuOpen = !mobileMenuOpen;"
+                    class="hover:underline"
+                    style="text-underline-offset: 4px"
+                    x-bind:class="activeSection === 'about-us' ? 'font-semibold underline' : ''"
+                    >About Us
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#our-services"
+                    @click="activeSection = 'our-services'; mobileMenuOpen = !mobileMenuOpen;"
+                    class="hover:underline"
+                    style="text-underline-offset: 4px"
+                    x-bind:class="activeSection === 'our-services' ? 'font-semibold underline' : ''"
+                    >Our Services
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#why-us"
+                    @click="activeSection = 'why-us'; mobileMenuOpen = !mobileMenuOpen;"
+                    class="hover:underline"
+                    style="text-underline-offset: 4px"
+                    x-bind:class="activeSection === 'why-us' ? 'font-semibold underline' : ''"
+                    >Why Us
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#our-partners"
+                    @click="activeSection = 'our-partners'; mobileMenuOpen = !mobileMenuOpen;"
+                    class="hover:underline"
+                    style="text-underline-offset: 4px"
+                    x-bind:class="activeSection === 'our-partners' ? 'font-semibold underline' : ''"
+                    >Our Partners
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#contact-us"
+                    @click="activeSection = 'contact-us'; mobileMenuOpen = !mobileMenuOpen;"
+                    class="hidden lg:block rounded-full px-4 py-2 bg-[#4db972] text-base hover:bg-[hsl(141,44%,46%)] active:bg-[hsl(141,44%,42%)]"
+                    >Contact Us
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+
+      <!-- Hero Section -->
+      <section
+        id="hero"
+        x-bind:class="mobileMenuOpen ? '-mt-[288px]' : '-mt-20'"
+      >
+        <div
+          class="relative h-[60vh] min-h-[500px] flex overflow-y-clip"
+        >
+          <!-- Overlays and Backgrounds -->
+          <div
+            class="absolute top-0 h-[60vh] min-h-[500px] full-viewport-width z-0"
+          >
+            <img
+              src="./yencom-bg.webp"
+              alt="yencom background"
+              class="object-cover z-0 h-full w-full"
+            />
+          </div>
+          <div
+            class="absolute top-20 h-[60vh] min-h-[500px] full-viewport-width opacity-20 z-0"
+          >
+            <img
+              src="./bg-halftone.webp"
+              alt="yencom background"
+              class="object-cover h-full w-full object-top"
+            />
+          </div>
+          <div
+            class="absolute top-0 h-full min-h-[500px] full-viewport-width opacity-[0.84] bg-[#0e2116]"
+          ></div>
+          <div
+            class="relative z-10 h-[calc(60vh-100px)] min-h-[500px] mt-40 mx-auto w-fit max-w-3xl text-center"
+          >
+            <h2
+              class="text-white text-xl lg:text-5xl font-medium text-center leading-10"
+            >
+              Yencom, helping you
+              <span class="text-[#4db972] font-bold"> navigate </span>
+              <br />
+              the digital world.
+              <br />
+              with
+              <span class="text-[#4db972] font-bold"> confidence </span>
+            </h2>
+
+            <p class="mt-16">
+              <a
+                class="rounded-full px-6 py-3 bg-[#4db972] text-base hover:bg-[hsl(141,44%,46%)] active:bg-[hsl(141,44%,42%)] text-white"
+                href="#our-services"
+                >LEARN MORE
+              </a>
+            </p>
+          </div>
+        </div>
+        <div
+          class="grid grid-cols-1 lg:grid-cols-2 gap-0 lg:gap-10 my-20 mx-auto max-w-[1240px] px-4 lg:px-0"
+        >
+          <div class="img">
+            <img class="w-full" src="./img1.webp" alt="" />
+          </div>
+          <div class="content text-left">
+            <h1 class="text-[#172952] mb-5 font-semibold text-xl lg:text-4xl">
+              Our work at Yencom is to help organizations to confidently
+              navigate the digital world.
+            </h1>
+            <p class="text-gray-500 leading-6 text-base font-medium">
+              As businesses change to accommodate new, virtualized ways of
+              working and information systems, companies are expected to make
+              the necessary ICT investments to stay efficient, effective,
+              innovative and secure within the digital space. Yencom offers
+              cost-effective ICT Consultancy Services to ensure that your
+              technology meets your requirements and the demands of the modern
+              world.
+            </p>
+
+            <div
+              class="mt-2 items-start gap-4 rounded-lg p-4 max-w-sm text-left mx-auto shadow-sm"
+            >
+              <img src="./speech-marks.png" alt="speech-marks" class="w-8" />
+              <div class="flex flex-col gap-2">
+                <p class="">
+                  Yencom was founded with a prime goal in mind: To be the
+                  leading provider of world-class ICT consultancy services
+                  globally.
+                </p>
+                <div class="leading-[1]">
+                  <p class="font-bold capitalize">Nick Mwenda</p>
+                  <p class="capitalize text-sm">Solutions Architect</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- About Us Section -->
+      <section id="about-us" class="px-4 mt-8 text-base max-w-[1240px] mx-auto">
+        <div class="flex flex-col gap-6">
+          <div class="w-full flex items-center gap-2">
+            <div
+              class="h-[2px] flex-grow bg-gradient-to-r from-white/0 to-[#4db972]"
+            ></div>
+            <div class="bg-[#d1fae0] rounded-full">
+              <p class="text-[#084421] text-lg font-medium px-4 py-2">
+                <span>About us</span>
+              </p>
+            </div>
+            <div
+              class="h-[2px] flex-grow bg-gradient-to-r from-[#4db972] to-white/0"
+            ></div>
+          </div>
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-10">
+            <div class="text-3xl lg:text-7xl col-span-1 max-w-[300px]">
+              Some
+              Words About
+              Us
+            </div>
+            <div class="col-span-2">
+              <div class="space-y-4">
+                <p>
+                  Yencom Technologies Consulting is a premier technology
+                  consulting firm dedicated to empowering businesses through
+                  innovative solutions and strategic insights. With a team of
+                  seasoned professionals and industry experts, we specialize in
+                  delivering tailored consulting services that address the
+                  unique challenges of our clients across various sectors.
+                </p>
+                <p>
+                  At Yencom, we believe in harnessing the power of technology to
+                  drive efficiency, enhance productivity, and foster growth. Our
+                  extensive portfolio includes services in Data Protection, IT
+                  strategy, digital transformation, cloud computing,
+                  cybersecurity, and business intelligence.
+                </p>
+                <p>
+                  We work closely with our clients to understand their goals and
+                  challenges, enabling us to devise and implement strategies
+                  that not only meet their immediate needs but also position
+                  them for future success and Navigate the digital world with
+                  confidence.
+                </p>
+              </div>
+              <!-- Mission -->
+              <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 mt-10">
+                <div class="col-span-1 lg:col-span-2">
+                  <img class="h-48" src="./img2.webp" alt="" />
+                  <h2
+                    class="text-[#172952] text-[27px] font-normal col-span-1 lg:col-span-2"
+                  >
+                    One Purpose,
+                    <span class="font-bold text-[#4db972]">One Identity</span>
+                  </h2>
+                </div>
+
+                <div class="col-span-1 flex items-center gap-4">
+                  <div class="h-full w-1.5 bg-[#4db972] rounded-full"></div>
+                  <div class="flex flex-col gap-1">
+                    <h2 class="text-xl text-[#4db972] font-semibold">
+                      Our Mission
+                    </h2>
+                    <p class="leading-[1.3]">
+                      To empower businesses with secure and innovative digital
+                      solutions, fostering trust and excellence in the digital
+                      realm.
+                    </p>
+                  </div>
+                </div>
+                <div class="col-span-1 flex items-center gap-4">
+                  <div class="h-full w-1.5 bg-[#4db972] rounded-full"></div>
+                  <div class="flex flex-col gap-1">
+                    <h2 class="text-xl text-[#4db972] font-semibold">
+                      Our Vision
+                    </h2>
+                    <p class="leading-[1.3]">
+                      To be the premier global partner in data protection,
+                      cybersecurity, and digital transformation, enabling
+                      organizations to navigate the digital world with
+                      confidence and agility.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <!-- End Mission -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Services Section -->
+      <section
+        id="our-services"
+        class="relative px-4 lg:p-8 h-fit mt-8 pb-16 text-base max-w-[1240px] mx-auto"
+      >
+       
+        <!-- Main Contents -->
+        <div class="relative z-10 flex flex-col gap-6">
+          <div class="w-full flex items-center gap-2">
+            <div
+              class="h-[2px] flex-grow bg-gradient-to-r from-white/0 to-[#4db972]"
+            ></div>
+            <div class="bg-[#d1fae0] py-1 rounded-full my-10">
+              <p class="text-[#084421] text-lg font-medium px-4 py-2">
+                <span>Our Services</span>
+              </p>
+            </div>
+            <div
+              class="h-[2px] flex-grow bg-gradient-to-r from-[#4db972] to-white/0"
+            ></div>
+          </div>
+          <div class="grid grid-cols-1 lg:grid-cols-3">
+            <div class="text-3xl lg:text-7xl col-span-1 max-w-[300px]">
+              Yancom
+              Services
+            </div>
+            <div class="col-span-1 lg:col-span-2">
+              <img src="./img3.webp" alt="" />
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 my-10">
+            <!-- Service 1 -->
+            <div
+              class="col-span-1 rounded-lg p-6 lg:p-10 leading-8 flex flex-col gap-2 shadow-sm bg-gray-50
+              hover:bg-gray-100"
+            >
+              <div class="flex items-center gap-3">
+                <p class="text-7xl text-[#4db972] font-black">1.</p>
+                <p class="text-xl text-[#172952] font-medium">
+                  DPO as a Service (DPOaaS)
+                </p>
+              </div>
+              <div class="flex flex-col gap-2">
+                <p>
+                  Having access to an experienced and knowledgeable Data
+                  Protection Officer as a Service is a cost-effective way to
+                  improve information security and ensure compliance with data
+                  protection laws like GDPR.
+                </p>
+                <p>Our DPOaaS offering includes:</p>
+                <div class="flex flex-col gap-1.5">
+                  <div class="flex items-start gap-2">
+                    <span class="tick">&#10003;</span>
+                    <span
+                      >Dedicated DPO support with unlimited telephone and email
+                      assistance during business hours.</span
+                    >
+                  </div>
+                  <div class="flex items-start gap-2">
+                    <span class="tick">&#10003;</span>
+                    <span
+                      >Registration of your DPO with the appropriate supervisory
+                      authority.</span
+                    >
+                  </div>
+                  <div class="flex items-start gap-2">
+                    <span class="tick">&#10003;</span>
+                    <span
+                      >GDPR gap analysis with a prioritized remedial action
+                      plan.</span
+                    >
+                  </div>
+                  <div class="flex items-start gap-2">
+                    <span class="tick">&#10003;</span>
+                    <span
+                      >Comprehensive GDPR documentation review, including legal
+                      insights.</span
+                    >
+                  </div>
+                  <div class="flex items-start gap-2">
+                    <span class="tick">&#10003;</span>
+                    <span
+                      >Guidance on data protection impact assessments (DPIAs),
+                      data subject access requests (DSARs), and data breach
+                      management.</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Service 2 -->
+            <div
+              class="col-span-1 rounded-lg p-6 lg:p-10 leading-8 flex flex-col gap-2 shadow-sm bg-gray-50
+              hover:bg-gray-100"
+            >
+              <div class="flex items-center gap-3">
+                <p class="text-7xl text-[#4db972] font-black">2.</p>
+                <p class="text-xl text-[#172952] font-medium">
+                  Data Protection Compliance Audit
+                </p>
+              </div>
+              <div class="flex flex-col gap-2">
+                <p>
+                  Our audit services assess whether your organization has
+                  effective policies and procedures in place for managing
+                  personal data.
+                </p>
+                <p>Our comprehensive audit includes:</p>
+                <div class="flex flex-col gap-1.5">
+                  <div class="flex items-start gap-2">
+                    <span class="tick">&#10003;</span>
+                    <span
+                      >Assessment of governance, policies, and procedures.</span
+                    >
+                  </div>
+                  <div class="flex items-start gap-2">
+                    <span class="tick">&#10003;</span>
+                    <span
+                      >Evaluation of data handling processes for both electronic
+                      and manual records.</span
+                    >
+                  </div>
+                  <div class="flex items-start gap-2">
+                    <span class="tick">&#10003;</span>
+                    <span
+                      >Review of response procedures for data access requests
+                      and third-party sharing.</span
+                    >
+                  </div>
+                  <div class="flex items-start gap-2">
+                    <span class="tick">&#10003;</span>
+                    <span
+                      >Analysis of security measures for data protection.</span
+                    >
+                  </div>
+                  <div class="flex items-start gap-2">
+                    <span class="tick">&#10003;</span>
+                    <span
+                      >Detailed audit report with actionable
+                      recommendations.</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Service 3 -->
+            <div
+              class="col-span-1 rounded-lg p-6 lg:p-10 leading-8 flex flex-col gap-2 shadow-sm bg-gray-50
+              hover:bg-gray-100"
+            >
+              <div class="flex items-center gap-3">
+                <p class="text-7xl text-[#4db972] font-black">3.</p>
+                <p class="text-xl text-[#172952] font-medium">
+                  Outsourced IT Advisory Services
+                </p>
+              </div>
+              <div class="flex flex-col gap-2">
+                <p>
+                  With vast experience and knowledge of the latest technologies,
+                  Yencom's dedicated IT advisory team offers tailored solutions
+                  that align with your business goals.
+                </p>
+                <p>Our managed IT services provide:</p>
+                <div class="flex flex-col gap-1.5">
+                  <div class="flex items-start gap-2">
+                    <span class="tick">&#10003;</span>
+                    <span
+                      >Expert guidance on IT strategy and infrastructure and
+                      networking services.</span
+                    >
+                  </div>
+                  <div class="flex items-start gap-2">
+                    <span class="tick">&#10003;</span>
+                    <span
+                      >Implementation of cutting-edge technologies for improved
+                      performance.</span
+                    >
+                  </div>
+                  <div class="flex items-start gap-2">
+                    <span class="tick">&#10003;</span>
+                    <span
+                      >Reliable outsourcing solutions to ensure seamless IT
+                      operations.</span
+                    >
+                  </div>
+                  <div class="flex items-start gap-2">
+                    <span class="tick">&#10003;</span>
+                    <span
+                      >ICT Project management that delivers quality, within time
+                      and budget.</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Service 4 -->
+            <div
+              class="col-span-1 rounded-lg p-6 lg:p-10 leading-8 flex flex-col gap-2 shadow-sm bg-gray-50
+              hover:bg-gray-100"
+            >
+              <div class="flex items-center gap-3">
+                <p class="text-7xl text-[#4db972] font-black">4.</p>
+                <p class="text-xl text-[#172952] font-medium">
+                  Business Process Automation
+                </p>
+              </div>
+              <div class="flex flex-col gap-2">
+                <p>
+                  Our expertise in business process automation enables
+                  organizations to analyze, optimize, and digitize processes for
+                  improved efficiency. We develop solutions for workflow-based
+                  processes and back-end data automation to empower businesses.
+                </p>
+                <p>Our solutions provide:</p>
+                <div class="flex flex-col gap-1.5">
+                  <div class="flex items-start gap-2">
+                    <span class="tick">&#10003;</span>
+                    <span>Operational excellence.</span>
+                  </div>
+                  <div class="flex items-start gap-2">
+                    <span class="tick">&#10003;</span>
+                    <span>Increased efficiency.</span>
+                  </div>
+                  <div class="flex items-start gap-2">
+                    <span class="tick">&#10003;</span>
+                    <span>Improved scalability.</span>
+                  </div>
+                  <div class="flex items-start gap-2">
+                    <span class="tick">&#10003;</span>
+                    <span>Enhanced customer experience.</span>
+                  </div>
+                  <div class="flex items-start gap-2">
+                    <span class="tick">&#10003;</span>
+                    <span>Saving costs related to manual processes.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Service 5 -->
+            <div
+              class="col-span-1 rounded-lg p-6 lg:p-10 leading-8 flex flex-col gap-2 shadow-sm bg-gray-50
+              hover:bg-gray-100"
+            >
+              <div class="flex items-center gap-3">
+                <p class="text-7xl text-[#4db972] font-black">5.</p>
+                <p class="text-xl text-[#172952] font-medium">
+                  Cybersecurity Awareness Training
+                </p>
+              </div>
+              <div class="flex flex-col gap-2">
+                <p>
+                  In today's rapidly evolving cyber threat landscape,
+                  cybersecurity awareness training is crucial for organizational
+                  defense.
+                </p>
+                <p>
+                  Our comprehensive training solutions blend proven
+                  methodologies with innovative techniques to activate your
+                  human sensors and create an effective "human firewall."
+                </p>
+              </div>
+            </div>
+            <!-- Service 6 -->
+            <div
+              class="col-span-1 rounded-lg p-6 lg:p-10 leading-8 flex flex-col gap-2 shadow-sm bg-gray-50
+              hover:bg-gray-100"
+            >
+              <div class="flex items-center gap-3">
+                <p class="text-7xl text-[#4db972] font-black">6.</p>
+                <p class="text-xl text-[#172952] font-medium">
+                  Cloud Hosting as a Service
+                </p>
+              </div>
+              <div class="flex flex-col gap-2">
+                <p>
+                  We offer fully managed, high-performance cloud hosting
+                  solutions. From web applications to enterprise emails setup,
+                  we host and manage infrastructure on leading platforms such as
+                  AWS, Azure, Google cloud and private cloud environments.
+                </p>
+                <p>
+                  We are committed to help organizations unlock the full
+                  potential of cloud computing through expertly managed hosting
+                  environments tailored for performance, security, and
+                  scalability.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Why us Section -->
+      <section id="why-us" class="mt-8 text-base max-w-[1240px] mx-auto px-4 lg:px-0">
+        <div class="flex flex-col gap-6">
+          <div class="w-full flex items-center gap-2">
+            <div
+              class="h-[2px] flex-grow bg-gradient-to-r from-white/0 to-[#4db972]"
+            ></div>
+            <div class="bg-[#d1fae0] py-1 rounded-full">
+              <p class="text-[#084421] text-lg font-medium px-4 py-2">
+                <span>Why choose us</span>
+              </p>
+            </div>
+            <div
+              class="h-[2px] flex-grow bg-gradient-to-r from-[#4db972] to-white/0"
+            ></div>
+          </div>
+          <div class="grid grid-cols-1 lg:grid-cols-2 mt-10 space-y-10">
+            <div class="col-span-1 mt-0 lg:mt-6">
+              <div class="text-3xl lg:text-7xl pt-0 lg:pt-6">
+                Why Choose <br />
+                Yancom
+              </div>
+              <div class="space-y-10 mt-10">
+                <div class="pr-4 flex items-center gap-4">
+                  <div class="w-12 flex-shrink-0">
+                    <img
+                      src="./expertise-icon.png"
+                      alt="expertise icon"
+                      class="w-full object-fit"
+                    />
+                  </div>
+                  <div class="h-full w-1.5 bg-[#172952] rounded-full"></div>
+                  <div class="flex flex-col gap-1">
+                    <h2 class="text-xl text-[#172952] font-semibold">
+                      Expertise
+                    </h2>
+                    <p class="leading-[1.3]">
+                      Our team comprises highly skilled consultants with diverse
+                      backgrounds and extensive experience in technology and
+                      business strategy.
+                    </p>
+                  </div>
+                </div>
+                <div class="pr-4 flex items-center gap-4">
+                  <div class="w-12 flex flex-shrink-0">
+                    <img
+                      src="./customised-solutions-icon.png"
+                      alt="customised solutions icon"
+                      class="w-full object-fit"
+                    />
+                  </div>
+                  <div class="h-full w-1.5 bg-[#172952] rounded-full"></div>
+                  <div class="flex flex-col gap-1">
+                    <h2 class="text-xl text-[#172952] font-semibold">
+                      Customised Solutions
+                    </h2>
+                    <p class="leading-[1.3]">
+                      We understand that every business is unique. Our solutions
+                      are tailored to meet the specific needs and objectives of
+                      each client.
+                    </p>
+                  </div>
+                </div>
+                <div class="pr-4 flex items-center gap-4">
+                  <div class="w-12 flex flex-shrink-0">
+                    <img
+                      src="./proven-record-icon.png"
+                      alt="proven track record icon"
+                      class="w-full object-fit"
+                    />
+                  </div>
+                  <div class="h-full w-1.5 bg-[#172952] rounded-full"></div>
+                  <div class="flex flex-col gap-1">
+                    <h2 class="text-xl text-[#172952] font-semibold">
+                      Proven Track Record
+                    </h2>
+                    <p class="leading-[1.3]">
+                      We have a history of successful projects that have
+                      significantly improved our client's operational efficiency
+                      and market position.
+                    </p>
+                  </div>
+                </div>
+                <div class="pr-4 flex items-center gap-4">
+                  <div class="w-12 flex flex-shrink-0">
+                    <img
+                      src="./client-centric-icon.png"
+                      alt="client-centric approach icon"
+                      class="w-full object-fit"
+                    />
+                  </div>
+                  <div class="h-full w-1.5 bg-[#172952] rounded-full"></div>
+                  <div class="flex flex-col gap-1">
+                    <h2 class="text-xl text-[#172952] font-semibold">
+                      Client-Centric Approach
+                    </h2>
+                    <p class="leading-[1.3]">
+                      Our clients are at the heart of everything we do. We are
+                      committed to providing personalized service and ongoing
+                      support.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-span-1 bg-[#4db972] p-6">
+              <div class="col-span-1 lg:col-span-2 mx-auto mt-6">
+                <h2 class="text-white text-7xl">Our Values</h2>
+              </div>
+              <div class="values space-y-10 my-10">
+                <div class="flex items-center gap-4">
+                  <div class="w-12 flex flex-shrink-0">
+                    <img
+                      src="./integrity-icon.png"
+                      alt="integrity icon"
+                      class="w-full object-fit"
+                    />
+                  </div>
+                  <div class="h-full w-1 bg-white rounded-full"></div>
+                  <div class="flex flex-col gap-1">
+                    <h2 class="text-xl text-white font-semibold">Integrity</h2>
+                    <p class="leading-[1.3] text-white">
+                      Upholding the highest ethical standards in all our
+                      interactions and solutions.
+                    </p>
+                  </div>
+                </div>
+                <div class="flex items-center gap-4">
+                  <div class="w-12 flex flex-shrink-0">
+                    <img
+                      src="./innovation-icon.png"
+                      alt="innovation icon"
+                      class="w-full object-fit"
+                    />
+                  </div>
+                  <div class="h-full w-1 bg-white rounded-full"></div>
+                  <div class="flex flex-col gap-1">
+                    <h2 class="text-xl text-white font-semibold">Innovation</h2>
+                    <p class="leading-[1.3] text-white">
+                      Continuously exploring and implementing cutting-edge
+                      technologies to serve our clients better.
+                    </p>
+                  </div>
+                </div>
+                <div class="flex items-center gap-4">
+                  <div class="w-12 flex flex-shrink-0">
+                    <img
+                      src="./customer-centricity.png"
+                      alt="customer-centricity icon"
+                      class="w-full object-fit"
+                    />
+                  </div>
+                  <div class="h-full w-1 bg-white rounded-full"></div>
+                  <div class="flex flex-col gap-1">
+                    <h2 class="text-xl text-white font-semibold">
+                      Customer-Centricity
+                    </h2>
+                    <p class="leading-[1.3] text-white">
+                      Prioritizing our clients' needs and delivering tailored
+                      solutions that drive success.
+                    </p>
+                  </div>
+                </div>
+                <div class="flex items-center gap-4">
+                  <div class="w-12 flex flex-shrink-0">
+                    <img
+                      src="./star-icon.png"
+                      alt="star icon"
+                      class="w-full object-fit"
+                    />
+                  </div>
+                  <div class="h-full w-1 bg-white rounded-full"></div>
+                  <div class="flex flex-col gap-1">
+                    <h2 class="text-xl text-white font-semibold">Excellence</h2>
+                    <p class="leading-[1.3] text-white">
+                      Rendering only the best services that ensure satisfaction
+                      is all but guaranteed.
+                    </p>
+                  </div>
+                </div>
+                <div class="flex items-center gap-4">
+                  <div class="w-12 flex flex-shrink-0">
+                    <img
+                      src="./chain-link-icon.png"
+                      alt="chain link icon"
+                      class="w-full object-fit"
+                    />
+                  </div>
+                  <div class="h-full w-1 bg-white rounded-full"></div>
+                  <div class="flex flex-col gap-1">
+                    <h2 class="text-xl text-white font-semibold">
+                      Collaboration
+                    </h2>
+                    <p class="leading-[1.3] text-white">
+                      Fostering a culture of teamwork and partnership, both
+                      internally and with our clients.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Our Partners Section -->
+    
+      <section id="our-partners" class="mt-8 text-base max-w-[1240px] mx-auto px-4 lg:px-0">
+        <div class="w-full gap-6 py-10">
+          <div class="w-full flex items-center gap-2">
+            <div
+              class="h-[2px] flex-grow bg-gradient-to-r from-white/0 to-[#4db972]"
+            ></div>
+            <div class="bg-[#d1fae0] px-3 py-1 rounded-full">
+              <p class="text-[#084421] text-lg font-medium px-4 py-2">
+                <span>Our trusted partners</span>
+              </p>
+            </div>
+            <div
+              class="h-[2px] flex-grow bg-gradient-to-r from-[#4db972] to-white/0"
+            ></div>
+          </div>
+          <div class="w-full items-center gap-2 my-10">
+            <h2 class="text-[#172952] text-[27px] font-normal text-center leading-6">
+              Trusted by some of the
+              <span class="font-bold text-[#4db972]">best brands</span>
+              around
+            </h2>
+            <p class="text-gray-500 font-medium text-center">
+              Collaborating with industry leaders to deliver exceptional results
+            </p>
+          </div>
+          <!-- Partners container -->
+          <div class="flex flex-col gap-6">
+            <!-- Security partners -->
+            <div class="flex flex-col gap-4">
+              <div class="w-full border-b-2 border-[#172952]">
+                <h2
+                  class="text-white px-4 py-1 rounded-t-lg text-xl font-semibold w-fit bg-[#172952]"
+                >
+                  Security
+                </h2>
+              </div>
+              <div
+                class="grid grid-cols-2 lg:flex lg:items-center gap-8 lg:gap-20 bg-[hsl(141,44%,93%)] p-6 rounded-lg border border-[hsl(141,44%,73%)]"
+              >
+                <img
+                  src="./solarwinds-logo.png"
+                  alt="solarwinds logo"
+                  class="col-span-1 h-6 lg:h-8 flex-shrink-0"
+                />
+                <img
+                  src="./checkpoint-logo.png"
+                  alt="checkpoint logo"
+                  class="col-span-1 h-6 lg:h-8 flex-shrink-0"
+                />
+                <img
+                  src="./ciscomeraki-logo.png"
+                  alt="cisco logo"
+                  class="col-span-1 h-6 lg:h-8 flex-shrink-0"
+                />
+                <img
+                  src="./pulse-logo.png"
+                  alt="pulse logo"
+                  class="col-span-1 h-6 lg:h-8 flex-shrink-0"
+                />
+              </div>
+            </div>
+
+            <!-- Security partners -->
+            <div class="flex flex-col gap-4">
+              <div class="w-full border-b-2 border-[#172952]">
+                <h2
+                  class="text-white px-4 py-1 rounded-t-lg text-xl font-semibold w-fit bg-[#172952]"
+                >
+                  Storage
+                </h2>
+              </div>
+              <div
+                class="grid grid-cols-2 lg:flex lg:items-center gap-8 lg:gap-20 bg-[hsl(141,44%,93%)] p-6 rounded-lg border border-[hsl(141,44%,73%)]"
+              >
+                <img
+                  src="./veeam-logo.png"
+                  alt="veeam logo"
+                  class="col-span-1 h-6 lg:h-8 flex-shrink-0"
+                />
+                <img
+                  src="./oracle-logo.png"
+                  alt="oracle logo"
+                  class="col-span-1 h-6 lg:h-8 flex-shrink-0"
+                />
+                <img
+                  src="./netapp-logo.png"
+                  alt="netapp logo"
+                  class="col-span-1 h-6 lg:h-8 flex-shrink-0"
+                />
+                <img
+                  src="./dellemc-logo.png"
+                  alt="dellemc logo"
+                  class="col-span-1 h-6 lg:h-8 flex-shrink-0"
+                />
+              </div>
+            </div>
+
+            <!-- Wireless partners -->
+            <div class="flex flex-col gap-4">
+              <div class="w-full border-b-2 border-[#172952]">
+                <h2
+                  class="text-white px-4 py-1 rounded-t-lg text-xl font-semibold w-fit bg-[#172952]"
+                >
+                  Wireless
+                </h2>
+              </div>
+              <div
+                class="grid grid-cols-2 lg:flex lg:items-center gap-8 lg:gap-20 bg-[hsl(141,44%,93%)] p-6 rounded-lg border border-[hsl(141,44%,73%)]"
+              >
+                <img
+                  src="./ubiquiti-logo.png"
+                  alt="ubiquite logo"
+                  class="col-span-1 h-6 lg:h-8 flex-shrink-0"
+                />
+                <img
+                  src="./ciscomeraki-logo.png"
+                  alt="ciscomeraki logo"
+                  class="col-span-1 h-6 lg:h-8 flex-shrink-0"
+                />
+                <img
+                  src="./ruckus-logo.png"
+                  alt="ruckus logo"
+                  class="col-span-1 h-6 lg:h-8 flex-shrink-0"
+                />
+                <img
+                  src="./tplink-logo.png"
+                  alt="tplink logo"
+                  class="col-span-1 h-6 lg:h-8 flex-shrink-0"
+                />
+              </div>
+            </div>
+
+            <!-- Hardware partners -->
+            <div class="flex flex-col gap-4">
+              <div class="w-full border-b-2 border-[#172952]">
+                <h2
+                  class="text-white px-4 py-1 rounded-t-lg text-xl font-semibold w-fit bg-[#172952]"
+                >
+                  Hardware
+                </h2>
+              </div>
+              <div
+                class="grid grid-cols-2 lg:flex lg:items-center gap-8 lg:gap-20 bg-[hsl(141,44%,93%)] p-6 rounded-lg border border-[hsl(141,44%,73%)]"
+              >
+                <img
+                  src="./dell-logo.png"
+                  alt="dell logo"
+                  class="col-span-1 h-6 lg:h-8 flex-shrink-0"
+                />
+                <img
+                  src="./hp-logo.png"
+                  alt="hp logo"
+                  class="col-span-1 h-6 lg:h-8 flex-shrink-0"
+                />
+                <img
+                  src="./samsung-logo.png"
+                  alt="samsung logo"
+                  class="col-span-1 h-6 lg:h-8 flex-shrink-0"
+                />
+                <img
+                  src="./lenovo-logo.png"
+                  alt="lenovo logo"
+                  class="col-span-1 h-6 lg:h-8 flex-shrink-0"
+                />
+                <img
+                  src="./apple-logo.png"
+                  alt="apple logo"
+                  class="col-span-1 h-6 lg:h-8 flex-shrink-0"
+                />
+              </div>
+            </div>
+
+            <!-- Cloud Hosting partners -->
+            <div class="flex flex-col gap-4">
+              <div class="w-full border-b-2 border-[#172952]">
+                <h2
+                  class="text-white px-4 py-1 rounded-t-lg text-xl font-semibold w-fit bg-[#172952]"
+                >
+                  Cloud Hosting
+                </h2>
+              </div>
+              <div
+                class="grid grid-cols-2 lg:flex lg:items-center gap-8 lg:gap-20 bg-[hsl(141,44%,93%)] p-6 rounded-lg border border-[hsl(141,44%,73%)]"
+              >
+                <img
+                  src="./googlecloud-logo.png"
+                  alt="googlecloud logo"
+                  class="col-span-1 h-6 lg:h-8 flex-shrink-0"
+                />
+                <img
+                  src="./mscloud-logo.png"
+                  alt="mscloud logo"
+                  class="col-span-1 h-6 lg:h-8 flex-shrink-0"
+                />
+                <img
+                  src="./aws-logo.png"
+                  alt="aws logo"
+                  class="col-span-1 h-6 lg:h-8 flex-shrink-0"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer id="contact-us" class="relative mt-8 text-base h-fit text-white">
+        <div class="absolute h-full full-viewport-width bg-[#172952]"></div>
+        <div class="relative w-fit mx-auto py-16 px-4">
+          <div class="flex flex-col items-center justify-center">
+            <p class="text-3xl font-semibold">Contact Us</p>
+            <p class="text-xl text-center">
+              For inquiries and partnerships, reach out to us at:
+            </p>
+          </div>
+          <hr class="border-[#4db972] my-4 lg:my-8" />
+          <div
+            class="grid grid-cols-1 lg:grid-cols-2 mt-8 mx-auto w-fit"
+            style="font-family: 'Lexend', sans-serif"
+          >
+            <div class="col-span-1 lg:border-r-4 lg:border-[#4db972]">
+              <img
+                src="./yencom-logo-white.png"
+                alt="yencom logo"
+                class="h-16 flex-shrink-0"
+              />
+            </div>
+            <div
+              class="col-span-1 flex flex-col items-center lg:items-start gap-2 lg:pl-8 mt-4 lg:mt-0"
+            >
+              <a href="mailto:info@yencom.co.ke">info@yencom.co.ke</a>
+              <a href="tel:+254701822881">+254 701 822881</a>
+            </div>
+          </div>
+          <p></p>
+        </div>
+      </footer>
+    </main>
+  </body>
+
+  <script>
+    export default {};
+  </script>
+</html>
