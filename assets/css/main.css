@@ -1,0 +1,58 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
+@import "tailwindcss";
+@import "@nuxt/ui";
+@theme static {
+  --font-outfit: "Outfit", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+}
+
+.full-viewport-width {
+  width: 100vw;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+
+.tick {
+  color: #4db972;
+  font-size: 24px;
+}
+
+:root {
+  --main-green: #4db972;
+  --main-green-light: #d1fae0;
+  --dark-green: #0e2116;
+  --text-main: #2c2c2c;
+  --main-blue: #172952;
+}
+
+body {
+  @apply text-sm lg:text-base text-gray-800 font-outfit;
+}
+
+.exact-active-class {
+  @apply text-primary-500;
+}
+
+@layer base {
+  button,
+  [role="button"] {
+    @apply cursor-pointer;
+    @apply disabled:cursor-not-allowed;
+  }
+}
+
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
