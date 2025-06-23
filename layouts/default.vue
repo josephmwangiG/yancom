@@ -1,6 +1,6 @@
 <script setup lang="ts">
 useHead({
-  titleTemplate: "%s | Yancom Technologies",
+  titleTemplate: "%s | Yencom Technologies",
 });
 </script>
 
@@ -32,7 +32,7 @@ useHead({
           </div>
           <hr class="border-[#4db972] mb-4 lg:mb-8 opacity-40" />
           <div class="text-center text-white font-medium pb-5">
-            © {{ new Date().getFullYear() }} Yancom Technologies |
+            © {{ new Date().getFullYear() }} Yencom Technologies |
             <span class="text-yellow-500">All Rights Reserved</span>
           </div>
         </div>

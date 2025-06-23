@@ -5,13 +5,16 @@
   <section
     id="why-us"
     class="mt-8 text-base max-w-[1240px] mx-auto px-4 lg:px-0"
+    data-aos="fade-up"
+    data-aos-duration="1000"
+    data-aos-easing="ease-in-out"
   >
     <div class="flex flex-col gap-6">
       <div class="grid grid-cols-1 lg:grid-cols-2 mt-10 space-y-10">
         <div class="col-span-1 mt-0 lg:mt-6">
           <div class="text-3xl lg:text-7xl pt-0 lg:pt-6">
             Why <br />
-            Yancom
+            Yencom
           </div>
           <div class="space-y-10 mt-10">
             <div class="pr-4 flex items-center gap-4">
@@ -195,7 +198,10 @@
 
   <section
     id="our-partners"
-    class="mt-8 text-base max-w-[1240px] mx-auto px-4 lg:px-0"
+    class="mt-8 text-base max-w-[1240px] mx-auto px-4 lg:px-0" 
+    data-aos="fade-up"
+    data-aos-duration="1000"
+    data-aos-easing="ease-in-out"
   >
     <div class="w-full gap-6 py-10">
       <div class="w-full flex items-center gap-2">

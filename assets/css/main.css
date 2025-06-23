@@ -8,6 +8,12 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 100px;
+  overflow-x: hidden;
+}
+
+[data-aos] {
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
 }
 
 .full-viewport-width {
@@ -32,7 +38,7 @@ html {
 }
 
 body {
-  @apply text-sm lg:text-base text-gray-800 font-outfit;
+  @apply text-[12px] lg:text-base text-gray-800 font-outfit;
 }
 
 .exact-active-class {
